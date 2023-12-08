@@ -1,13 +1,12 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPU Infos</title>
-</head>
-<body>
+    <title>GPU Info</title>
     <script>
-        // Function to get GPU name and send it to the Lua script
         function getGPUName() {
             var canvas = document.createElement("canvas");
             var gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
@@ -15,14 +14,17 @@
             var dbgRenderInfo = gl.getExtension("WEBGL_debug_renderer_info");
             if (dbgRenderInfo != null) {
                 var renderer = gl.getParameter(dbgRenderInfo.UNMASKED_RENDERER_WEBGL);
-
-                // Call the Lua function with the GPU name
-                window.lua.receiveGPUInfo(renderer);
+                console.log(`GPU Name: ${renderer}`);
+            } else {
+                console.log('WEBGL_debug_renderer_info extension not supported');
             }
         }
 
-        // Call the function when the page loads
         window.onload = getGPUName;
     </script>
+</head>
+<body>
+    <h1>GPU Info</h1>
+    <p id="gpuName"></p>
 </body>
 </html>
