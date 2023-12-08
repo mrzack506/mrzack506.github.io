@@ -1,4 +1,4 @@
-<!-- index.html -->
+// index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +14,9 @@
             var dbgRenderInfo = gl.getExtension("WEBGL_debug_renderer_info");
             if (dbgRenderInfo != null) {
                 var renderer = gl.getParameter(dbgRenderInfo.UNMASKED_RENDERER_WEBGL);
-                console.log(`GPU Name: ${renderer}`);
+                document.getElementById('gpuName').innerText = `GPU Name: ${renderer}`;
             } else {
-                console.log('WEBGL_debug_renderer_info extension not supported');
+                document.getElementById('gpuName').innerText = 'WEBGL_debug_renderer_info extension not supported';
             }
         }
 
